@@ -1,0 +1,25 @@
+//Go to your directory "faridahay13/dig/module3/behavioural"
+
+//source the licence
+source synopsys_linux_D-2010.03_cshrc
+
+//run  verilog
+
+
+
+
+
+vcs -debug +v2k \
+        ./FullAdder_tb.v \
+        ./FullAdder.v \
+
+
+
+           	
+simv -gui
+
+
+
+
+
+
