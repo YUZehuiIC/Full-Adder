@@ -1,0 +1,356 @@
+# Preference setting overrides
+gui_set_pref_value -category {Globals} -key {app_default_font} -value {Helvetica,17,-1,5,50,0,0,0,0,0}
+gui_set_pref_value -category {Globals} -key {app_fixed_width_font} -value {Courier [Ibm],16,-1,5,50,0,0,0,0,0}
+gui_create_pref_key -category {Globals} -key {load_detail_for_funcov} -value_type {bool} -value {false}
+gui_set_pref_value -category {Wave} -key {showgrid} -value {true}
+gui_create_pref_category -category {dlg_settings}
+gui_create_pref_key -category {dlg_settings} -key {tableWithImmediatePopup} -value_type {bool} -value {true}
+
+# State setting overrides
+gui_state_default_create -off -ini
+gui_set_state_value -category Layout -key child_console_size_x -value 1583
+gui_set_state_value -category Layout -key child_console_size_y -value 178
+gui_set_state_value -category Layout -key child_data_coltype -value 80
+gui_set_state_value -category Layout -key child_data_colvalue -value 12
+gui_set_state_value -category Layout -key child_data_colvariable -value 159
+gui_set_state_value -category Layout -key child_data_size_x -value 259
+gui_set_state_value -category Layout -key child_data_size_y -value 818
+gui_set_state_value -category Layout -key child_hier_col3 -value {-1}
+gui_set_state_value -category Layout -key child_hier_colpd -value 0
+gui_set_state_value -category Layout -key child_hier_size_x -value 168
+gui_set_state_value -category Layout -key child_hier_size_y -value 818
+gui_set_state_value -category Layout -key child_source_docknewline -value false
+gui_set_state_value -category Layout -key child_source_pos_x -value {-2}
+gui_set_state_value -category Layout -key child_source_pos_y -value {-18}
+gui_set_state_value -category Layout -key child_source_size_x -value 1159
+gui_set_state_value -category Layout -key child_source_size_y -value 814
+gui_set_state_value -category Layout -key child_wave_colname -value 220
+gui_set_state_value -category Layout -key child_wave_colvalue -value 220
+gui_set_state_value -category Layout -key child_wave_left -value 445
+gui_set_state_value -category Layout -key child_wave_right -value 1086
+gui_set_state_value -category Layout -key main_pos_y -value 24
+gui_set_state_value -category Layout -key main_size_x -value 1588
+gui_set_state_value -category Layout -key main_size_y -value 1138
+gui_set_state_value -category Layout -key stand_wave_child_docknewline -value false
+gui_set_state_value -category Layout -key stand_wave_child_pos_x -value {-2}
+gui_set_state_value -category Layout -key stand_wave_child_pos_y -value {-18}
+gui_set_state_value -category Layout -key stand_wave_child_size_x -value 1541
+gui_set_state_value -category Layout -key stand_wave_child_size_y -value 994
+gui_set_state_value -category Layout -key stand_wave_top_pos_x -value 5
+gui_set_state_value -category Layout -key stand_wave_top_pos_y -value 24
+gui_set_state_value -category Layout -key stand_wave_top_size_x -value 1541
+gui_set_state_value -category Layout -key stand_wave_top_size_y -value 1140
+gui_create_state_key -category FindDialog -key m_pMatchCase -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pMatchWord -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pUseCombo -value_type string -value {}
+gui_create_state_key -category FindDialog -key m_pWrapAround -value_type bool -value true
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_VPDCombo} -value_type string -value inter.vpd
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_argsCombo} -value_type string -value {{-ucligui }}
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_curDirCombo} -value_type string -value /home1/msc30y20/Desktop/Module3/Behavioral
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_exeCombo} -value_type string -value /home1/msc30y20/Desktop/Module3/Behavioral/simv
+gui_state_default_create -off
+
+# Begin command logging
+gui_sim_run Ucli -exe simv -args {-ucligui  } -dir .
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.A   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.A  TestBench_tb.B   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.A  TestBench_tb.B  TestBench_tb.COUT   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.A  TestBench_tb.B  TestBench_tb.COUT  TestBench_tb.S   }
+gui_sim_continue  
+gui_open_window Wave
+gui_list_add -id Wave.1 -from Data.1 { TestBench_tb.S TestBench_tb.COUT TestBench_tb.CIN TestBench_tb.A TestBench_tb.B } -insertionbar
+gui_sim_restart
+gui_zoom -window Wave.1 -full
+gui_zoom -window Wave.1 -full
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_list_select -id Wave.1 -selected  { TestBench_tb.S   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.B {{TestBench_tb.S}} 
+gui_list_select -id Wave.1 -selected  { TestBench_tb.COUT   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.S {{TestBench_tb.COUT}} 
+gui_marker_move -id  Wave.1 C1 2800
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 1899
+gui_sim_restart
+gui_sim_continue  
+gui_marker_move -id  Wave.1 C1 3984
+gui_zoom -window Wave.1 -full
+gui_src_highlight_item -id Source.1 -lfrom 40 -idxfrom 2 -fileIdFrom 0 -lto 40 -idxto 6 -fileIdTo 0 -selection {.CIN} -selectionId 0 -replace 0
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_sim_restart
+gui_marker_move -id  Wave.1 C1 823
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 2530
+gui_marker_move -id  Wave.1 C1 643
+gui_sim_continue  
+gui_list_select -id Wave.1 -selected  {  }
+gui_zoom -window Wave.1 -full
+gui_set_time_units 1us
+gui_set_time_units 1s
+gui_marker_move -id  Wave.1 C1 800
+gui_marker_move -id  Wave.1 C1 400
+gui_marker_move -id  Wave.1 C1 1400
+gui_marker_move -id  Wave.1 C1 2850
+gui_set_time_units 100s
+gui_set_time_units 1s
+gui_marker_move -id  Wave.1 C1 3203
+gui_marker_move -id  Wave.1 C1 1178
+gui_sim_restart
+gui_zoom -window Wave.1 -full
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 3918
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 3200
+gui_set_time 6400
+gui_set_time 6400
+gui_set_time 6400
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 3678
+gui_sim_restart
+gui_sim_continue  
+gui_marker_move -id  Wave.1 C1 5979
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 800
+gui_sim_restart
+gui_marker_move -id  Wave.1 C1 1839
+gui_sim_continue  
+gui_src_highlight_item -id Source.1 -lfrom 70 -idxfrom 4 -fileIdFrom 0 -lto 78 -idxto 28 -fileIdTo 0 -selection { {B, A, CIN} = REG_DATA[i];
+ 
+	    $fdisplay(file1, "%d\t%d\t%d\t%d\t%d\t%d", i, CIN, A, B, S, COUT);
+	    # (DELAY);
+	for (j = i+1; j < N; j = j+1)
+	    begin
+    		
+		
+		{B, A, CIN} = REG_DATA[j];} -selectionId 0 -replace 0
+gui_marker_move -id  Wave.1 C1 7470
+gui_marker_move -id  Wave.1 C1 7404
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 2073
+gui_sim_restart
+gui_sim_continue  
+gui_marker_move -id  Wave.1 C1 8293
+gui_marker_move -id  Wave.1 C1 8876
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_list_select -id Data.1 -selected  { {TestBench_tb.i[31:0]}   }
+gui_list_select -id Data.1 -selected  { {TestBench_tb.i[31:0]}  {TestBench_tb.j[31:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {TestBench_tb.i[31:0]} {TestBench_tb.j[31:0]} } -insertionbar
+gui_list_select -id Wave.1 -selected  { {TestBench_tb.i[31:0]}   }
+gui_marker_move -id  Wave.1 C1 1076
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_list_select -id Wave.1 -selected  { {TestBench_tb.j[31:0]}   }
+gui_marker_select -id  Wave.1 { C1 }
+gui_marker_move -id  Wave.1 C1 800
+gui_wv_zoom_timerange -id  Wave.1 0 6688
+gui_wv_zoom_timerange -id  Wave.1 12 1364
+gui_wv_zoom_timerange -id  Wave.1 35 326
+gui_wv_zoom_timerange -id  Wave.1 115 242
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window  Wave.1  -factor 2
+gui_zoom -window  Wave.1  -factor 2
+gui_zoom -window  Wave.1  -factor 2
+gui_zoom -window  Wave.1  -factor 0.5
+gui_zoom -window  Wave.1  -factor 0.5
+gui_zoom -window  Wave.1  -factor 0.5
+gui_zoom -window  Wave.1  -factor 0.5
+gui_marker_move -id  Wave.1 C1 1958
+gui_zoom -window Wave.1 -full
+gui_zoom -window  Wave.1  -factor 0.5
+gui_zoom -window  Wave.1  -full
+gui_zoom -window  Wave.1  -full
+gui_zoom -window  Wave.1  -factor 2
+gui_zoom -window Wave.1 -full
+gui_wv_zoom_timerange -id  Wave.1 5969 6360
+gui_zoom -window  Wave.1  -factor 0.5
+gui_zoom -window  Wave.1  -factor 0.5
+gui_wv_scroll_hslidermove -id  Wave.1 3816
+gui_list_select -id Wave.1 -selected  { TestBench_tb.B   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after Group1 {{TestBench_tb.B}}
+gui_list_select -id Wave.1 -selected  { TestBench_tb.A   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.B {{TestBench_tb.A}} 
+gui_marker_move -id  Wave.1 C1 278
+gui_list_select -id Wave.1 -selected  { TestBench_tb.CIN   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after Group1 {{TestBench_tb.CIN}}
+gui_marker_move -id  Wave.1 C1 1202
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_close_window -window TopLevel.2
+gui_src_highlight_item -id Source.1 -lfrom 74 -idxfrom 5 -fileIdFrom 0 -lto 74 -idxto 7 -fileIdTo 0 -selection {//} -selectionId 0 -replace 0
+gui_src_highlight_item -id Source.1 -lfrom 74 -idxfrom 5 -fileIdFrom 0 -lto 80 -idxto 7 -fileIdTo 0 -selection {//if(i = 7)
+		//begin
+		    //{B, A, CIN} = REG_DATA[0];
+ 
+	   	    //$fdisplay(file1, "%d\t%d\t%d\t%d\t%d\t%d", 0, CIN, A, B, S, COUT);
+		    //# (DELAY);
+		//end} -selectionId 0 -replace 0
+gui_list_select -id Data.1 -selected  { TestBench_tb.A   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.COUT  TestBench_tb.A   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.COUT  TestBench_tb.A  TestBench_tb.B   }
+gui_list_select -id Data.1 -selected  { TestBench_tb.CIN  TestBench_tb.COUT  TestBench_tb.A  TestBench_tb.B  {TestBench_tb.i[31:0]}  {TestBench_tb.j[31:0]}  TestBench_tb.S   }
+gui_sim_restart
+gui_set_env SIMSETUP::SIMCURRENTDIR /home1/msc30y20/Desktop/TestBench/Behavioral
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_open_window Wave
+gui_list_add -id Wave.1 -from Data.1 { TestBench_tb.CIN TestBench_tb.COUT TestBench_tb.A TestBench_tb.B {TestBench_tb.i[31:0]} {TestBench_tb.j[31:0]} TestBench_tb.S } -insertionbar
+gui_sim_continue  
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_list_select -id Wave.1 -selected  { TestBench_tb.COUT   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.S {{TestBench_tb.COUT}} 
+gui_list_select -id Wave.1 -selected  { TestBench_tb.S   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.B {{TestBench_tb.S}} 
+gui_list_select -id Wave.1 -selected  { TestBench_tb.COUT   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.S {{TestBench_tb.COUT}} 
+gui_list_select -id Wave.1 -selected  {  }
+gui_marker_move -id  Wave.1 C1 1152
+gui_marker_move -id  Wave.1 C1 2454
+gui_marker_move -id  Wave.1 C1 3152
+gui_marker_move -id  Wave.1 C1 2653
+gui_marker_move -id  Wave.1 C1 63
+gui_marker_move -id  Wave.1 C1 21
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_sim_continue  
+gui_sim_restart
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_list_select -id Wave.1 -selected  { TestBench_tb.B   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.A {{TestBench_tb.B}} 
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.CIN {{TestBench_tb.B}} 
+gui_marker_move -id  Wave.1 C1 427
+gui_list_select -id Wave.1 -selected  {  }
+gui_list_select -id Wave.1 -selected  { TestBench_tb.B   }
+gui_list_select -id Wave.1 -selected  { TestBench_tb.CIN   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after TestBench_tb.A {{TestBench_tb.CIN}} 
+gui_list_select -id Wave.1 -selected  {  }
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 1899
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_sim_continue  
+gui_zoom -window Wave.1 -full
+gui_marker_move -id  Wave.1 C1 2837
+gui_marker_move -id  Wave.1 C1 50
+gui_marker_move -id  Wave.1 C1 104
+gui_list_select -id Wave.1 -selected  { TestBench_tb.S   }
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_seek_next -id Wave.1 -number 1 
+gui_seek_previous -id Wave.1 -number 1 
+gui_zoom -window Wave.1 -full
+gui_wv_zoom_timerange -id  Wave.1 16 340
+gui_sim_restart -build /home1/msc30y20/Desktop/TestBench/Behavioral/simv.daidir/vcs_rebuild
+gui_close_window -window TopLevel.2

@@ -1,0 +1,108 @@
+ucliGUI::start /home1/msc30y20/Desktop/TestBench/rtl/simv -ucligui 
+set ucliGUI::state
+set ucliGUI::state
+ucliCore::getToolPID
+synopsys::env hasTB
+trigger_hier_stack_context_switch 0
+synUtils::setDVEInitPhase 1
+synopsys::dump -type VPD -file /home1/msc30y20/Desktop/TestBench/rtl/inter.vpd -locking
+synopsys::dump -autoflush on -fid VPD7
+set ::dve_fid VPD7
+synUtils::setDVEInitPhase 0
+ucliCore::getToolPID
+synUtils::sendTool -active _icl_setToolSocket /tmp/smlnpAApWTh
+synUtils::sendTool -active {_icl_start_rpc -version "I-2014.03-SP1" -sync_file /tmp/vcs_dve_rpc.msc30y20.30247}
+synUtils::sendTool -active {_icl_createSharedMemory /tmp/vcs_dve_general.msc30y20.30247}
+config endofsim noexit
+config onfail enable all
+config syscaddplainmembers
+config syscaddsourcenames
+config syscaddstructtypes
+synopsys::listing -disable
+# Begin_DVE_Session_Save_Info
+# DVE restart session
+# Saved on Sat Oct 3 23:19:01 2020
+# Designs open: 1
+#   Sim: /home1/msc30y20/Desktop/TestBench/rtl/simv
+# Toplevel windows open: 2
+# 	TopLevel.1
+# 	TopLevel.2
+#   Source.1: TestBench_tb
+#   Wave.1: 7 signals
+#   Group count = 2
+#   Group Group1 signal count = 5
+#   Group Group2 signal count = 2
+# End_DVE_Session_Save_Info
+# DVE version: I-2014.03-SP1
+# DVE build date: Aug 27 2014 20:50:39
+#<Session mode="Restart" path=".restartSimSession.tcl" type="Debug">
+# Application preferences
+#<WindowLayout>
+# DVE top-level session
+# Create and position top-level window: TopLevel.1
+set TopLevel.1 TopLevel.1
+# Docked window settings
+set HSPane.1 HSPane.1
+set Hier.1 Hier.1
+set DLPane.1 DLPane.1
+set Data.1 Data.1
+set Console.1 Console.1
+# MDI window settings
+set Source.1 Source.1
+# End MDI window settings
+# Create and position top-level window: TopLevel.2
+set TopLevel.2 TopLevel.2
+# Docked window settings
+# MDI window settings
+set Wave.1 Wave.1
+# End MDI window settings
+#</WindowLayout>
+#<Database>
+#</Database>
+# DVE Global setting session:
+# Global: Breakpoints
+# Global: Bus
+# Global: Expressions
+# Global: Signal Time Shift
+# Global: Signal Compare
+# Global: Signal Groups
+set _session_group_6 Group1
+set Group1 "$_session_group_6"
+set _session_group_7 Group2
+set Group2 "$_session_group_7"
+# Global: Highlighting
+# Global: Stack
+# Post database loading setting...
+# Save global setting...
+# Wave/List view global setting
+# Close all empty TopLevel windows
+foreach __top [gui_ekki_get_window_ids -type TopLevel] {     if { [llength [gui_ekki_get_window_ids -parent $__top]] == 0} {         gui_close_window -window $__top     } }
+# DVE View/pane content session:
+# Hier 'Hier.1'
+catch {gui_list_select -id ${Hier.1} {TestBench_tb}}
+# Data 'Data.1'
+catch { gui_list_select -id ${Data.1} {TestBench_tb.CIN TestBench_tb.COUT TestBench_tb.A TestBench_tb.B TestBench_tb.i TestBench_tb.j TestBench_tb.S }}
+# Source 'Source.1'
+# View 'Wave.1'
+set groupExD [gui_get_pref_value -category Wave -key exclusiveSG]
+set origWaveHeight [gui_get_pref_value -category Wave -key waveRowHeight]
+set origGroupCreationState [gui_list_create_group_when_add -wave]
+synopsys::dump -add {TestBench_tb.A TestBench_tb.B TestBench_tb.CIN TestBench_tb.i TestBench_tb.j } -aggregates  -fid VPD7
+synopsys::dump -add {TestBench_tb.COUT TestBench_tb.S } -aggregates  -fid VPD7
+if {$origGroupCreationState} { 	gui_list_create_group_when_add -wave -enable }
+if { $groupExD } {  gui_msg_report -code DVWW028 }
+# Restore toplevel window zorder
+# The toplevel window could be closed if it has no view/pane
+if {[gui_exist_window -window ${TopLevel.2}]} { 	gui_set_active_window -window ${TopLevel.2} 	gui_set_active_window -window ${Wave.1} }
+if {[gui_exist_window -window ${TopLevel.1}]} { 	gui_set_active_window -window ${TopLevel.1} 	gui_set_active_window -window ${Source.1} }
+#</Session>
+synopsys::run
+set ucliGUI::state
+set ucliGUI::state
+set ucliGUI::state
+set ucliGUI::state
+if [catch {gui_sim_terminate}] {gui_sim_terminate -kill}
+synopsys::finish
+set ucliGUI::state
+set ucliGUI::state
+ucli_exit

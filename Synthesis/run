@@ -1,0 +1,11 @@
+mkdir logs
+mkdir sources
+mkdir netlist
+cp -i ../Behavioral/TestBench.v sources/
+source sourcefiles
+design_vision &
+
+
+
+
+

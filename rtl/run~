@@ -1,0 +1,7 @@
+cp ../Synthesis/netlist/Syn_TestBench.sdf ./
+cp ../Synthesis/netlist/Syn_TestBench.v ./
+cp ../Behavioral/TestBench_tb.v ./
+cp ../Behavioral/InputVector.txt ./
+source synopsys_linux_vJ-2014_cshrc
+vcs -debug +v2k ./TestBench_tb.v ./Syn_TestBench.v -f ./library.f
+simv -gui

@@ -1,0 +1,30 @@
+## -----------------------------------------------------------------------------------------
+## Version | Programmer                                     | Date       | Remark   
+## -----------------------------------------------------------------------------------------
+## V1      | Dr Kwen-Siong Chong (kschong@ntu.edu.sg)       | 31/07/2013 | Initial version
+## -----------------------------------------------------------------------------------------  
+##
+## The following script describes the procedures for running power analysis.  
+## The script is for teaching purpose in the NTU-TUM class, NM6008.  
+## Please execute the script in the folder "PowerAnalysis". 
+##
+
+
+####Convert the vpd file to vcd file####
+vpd2vcd ../inter.vpd inter.vcd
+
+####Convert the vcd file to saif file####
+vcd2saif -i ../inter.vcd -o inter.saif
+
+####Run power compiler####
+dc_shell-xg-t
+
+read_verilog ../Syn_FullAdder.v
+current_design FullAdder
+link
+read_saif -input inter.saif -instance FullAdder_tb/U1
+
+report_power >> "rpt_power.txt"
+report_power -hier >> "rpt_power_hier.txt"
+report_power -hier -nosplit >> "rpt_power_hier_nosplit.txt"
+report_power -cell >> "rpt_power_cell.txt"
